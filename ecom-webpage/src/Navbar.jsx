@@ -27,6 +27,7 @@ export default function Navbar() {
 
     return (
         <>
+        <div className='sticky top-0 bg-white z-50'> 
             <div className="flex justify-between items-center p-4 ">
                 <div className="pl-12 pt-2">
                     <img src={Logo} alt="Logo" />
@@ -66,7 +67,7 @@ export default function Navbar() {
                 </div>
             </div>
             <div className='border-b-gray-300 border-[0.5px] mr-5 ml-5'></div>
-
+          </div>
             <div id="home" className="">
                 <Herosection />
             </div>
