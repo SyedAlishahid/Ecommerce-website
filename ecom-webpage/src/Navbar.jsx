@@ -44,8 +44,8 @@ export default function Navbar() {
         <>
             <div className='sticky top-0 bg-white z-50'>
                 <div className="flex justify-between items-center p-4 ">
-                    <div className="pl-12 pt-2">
-                        <img src={Logo} alt="Logo" />
+                    <div className="pl-12 pt-2 cursor-pointer">
+                        <img src={Logo} alt="Logo" onClick={() => window.location.href = "http://localhost:5173/"}/>
                     </div>
 
                     <ul className="hidden lg:flex m-4 text-md font-medium relative text-black">

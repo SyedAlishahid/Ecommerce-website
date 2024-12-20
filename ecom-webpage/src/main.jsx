@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Navbar from './Navbar';
-import Listitem from './Listitem'; 
-import Collection from './Collection'; 
+import Listitem from './Listitem';
+import Collection from './Collection';
 import About from './About';
 import Footer from './Footer';
 import './index.css';
@@ -11,15 +11,11 @@ import './index.css';
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Navbar />,
+        element: <Navbar />, 
         children: [
             {
-                path: "/arrivals",
-                element: <Listitem />,  
-            },
-            {
                 path: "/collection",
-                element: <Collection />,  
+                element: <Collection />,
             },
             {
                 path: "/about",
@@ -30,6 +26,10 @@ const router = createBrowserRouter([
                 element: <Footer />,
             },
         ],
+    },
+    {
+        path: "/arrivals", 
+        element: <Listitem />, 
     },
 ]);
 
