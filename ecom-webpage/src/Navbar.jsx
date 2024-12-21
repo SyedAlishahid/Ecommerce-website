@@ -29,82 +29,45 @@ export default function Navbar() {
 
     // Scroll automatically to the section based on the URL path
     useEffect(() => {
-        if (location.pathname === '/about') {
-            scrollToSection('about');
-        } else if (location.pathname === '/collection') {
-            scrollToSection('collection');
-        } else if (location.pathname === '/offer') {
-            scrollToSection('offer');
-        } else if (location.pathname === '/') {
-            scrollToSection('home');
+        const pathMap = {
+            '/about': 'about',
+            '/collection': 'collection',
+            '/offer': 'offer',
+            '/': 'home',
+        };
+        const sectionId = pathMap[location.pathname];
+        if (sectionId) {
+            scrollToSection(sectionId);
         }
     }, [location]);
 
     return (
         <>
-            <div className='sticky top-0 bg-white z-50'>
-                <div className="flex justify-between items-center p-4 ">
-                    <div className="pl-12 pt-2 cursor-pointer">
-                        <img src={Logo} alt="Logo" onClick={() => window.location.href = "http://localhost:5173/"}/>
+            <div className='sticky top-0 bg-white shadow-md z-50'>
+                <div className="flex justify-between items-center p-4">
+                    <div className="cursor-pointer">
+                        <img src={Logo} alt="Logo" onClick={() => window.location.href = "http://localhost:5173/"} />
                     </div>
 
-                    <ul className="hidden lg:flex m-4 text-md font-medium relative text-black">
-                        <li className="pl-8">
-                            <NavLink
-                                to="/"
-                                className={({ isActive }) =>
-                                    `hover:text-blue-700 hover:cursor-pointer ${isActive ? 'text-blue-700 font-bold' : 'font-medium text-black'}`
-                                }
-                            >
-                                Home
-                            </NavLink>
-                        </li>
-                        <li className="pl-8">
-                            <NavLink
-                                to="/collection"
-                                className={({ isActive }) =>
-                                    `hover:text-blue-700 hover:cursor-pointer ${isActive ? 'text-blue-700 font-bold' : 'font-medium text-black'}`
-                                }
-                            >
-                                Collection
-                            </NavLink>
-                        </li>
-                        <li className="pl-8">
-                            <NavLink
-                                to="/arrivals"
-                                className={({ isActive }) =>
-                                    `hover:text-blue-700 hover:cursor-pointer ${isActive ? 'text-blue-700 font-bold' : 'font-medium text-black'}`
-                                }
-                            >
-                                Arrivals
-                            </NavLink>
-                        </li>
-                        <li className="pl-8">
-                            <NavLink
-                                to="/about"
-                                className={({ isActive }) =>
-                                    `hover:text-blue-700 hover:cursor-pointer ${isActive ? 'text-blue-700 font-bold' : 'font-medium text-black'}`
-                                }
-                            >
-                                About
-                            </NavLink>
-                        </li>
-                        <li className="pl-8">
-                            <NavLink
-                                to="/offer"
-                                className={({ isActive }) =>
-                                    `hover:text-blue-700 hover:cursor-pointer ${isActive ? 'text-blue-700 font-bold' : 'font-medium text-black'}`
-                                }
-                            >
-                                Offer
-                            </NavLink>
-                        </li>
+                    <ul className="hidden lg:flex space-x-8 text-md font-medium text-black">
+                        {['/', '/collection', '/arrivals', '/about', '/offer'].map((path, index) => (
+                            <li key={index}>
+                                <NavLink
+                                    to={path}
+                                    className={({ isActive }) =>
+                                        `hover:text-blue-700 ${isActive ? 'text-blue-700 font-bold' : 'font-medium'}`
+                                    }
+                                >
+                                    {path === '/' ? 'Home' : path.charAt(1).toUpperCase() + path.slice(2)}
+                                </NavLink>
+                            </li>
+                        ))}
                     </ul>
 
-                    <div className="hidden lg:flex m-4 cursor-pointer">
-                        <SearchIcon sx={{ marginLeft: '16px', fontSize: '1.5rem' }} />
-                        <PersonIcon sx={{ marginLeft: '16px', fontSize: '1.5rem' }} />
-                        <LocalMallIcon sx={{ marginLeft: '16px', fontSize: '1.5rem' }} />
+                    <div className="hidden lg:flex space-x-4">
+                        <SearchIcon sx={{ fontSize: '1.5rem' }} />
+                        <PersonIcon sx={{ fontSize: '1.5rem' }} />
+                        <LocalMallIcon sx={{ fontSize: '1.5rem' }} />
                     </div>
 
                     <div className={`lg:hidden m-4 ${sidebar ? 'hidden' : ''}`}>
@@ -118,62 +81,24 @@ export default function Navbar() {
                     </div>
                     <div className="w-64 h-full bg-gray-900 text-white p-4">
                         <ul className="flex flex-col space-y-4 overflow-y-auto">
-                            <li>
-                                <NavLink
-                                    to="/"
-                                    className={({ isActive }) =>
-                                        `hover:bg-gray-700 py-2 px-4 cursor-pointer ${isActive ? 'text-blue-700 font-bold' : ''}`
-                                    }
-                                >
-                                    Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/collection"
-                                    className={({ isActive }) =>
-                                        `hover:bg-gray-700 py-2 px-4 cursor-pointer ${isActive ? 'text-blue-700 font-bold' : ''}`
-                                    }
-                                >
-                                    Collection
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/arrivals"
-                                    className={({ isActive }) =>
-                                        `hover:bg-gray-700 py-2 px-4 cursor-pointer ${isActive ? 'text-blue-700 font-bold' : ''}`
-                                    }
-                                >
-                                    Arrivals
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/about"
-                                    className={({ isActive }) =>
-                                        `hover:bg-gray-700 py-2 px-4 cursor-pointer ${isActive ? 'text-blue-700 font-bold' : ''}`
-                                    }
-                                >
-                                    About
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
-                                    to="/offer"
-                                    className={({ isActive }) =>
-                                        `hover:bg-gray-700 py-2 px-4 cursor-pointer ${isActive ? 'text-blue-700 font-bold' : ''}`
-                                    }
-                                >
-                                    Offer
-                                </NavLink>
-                            </li>
+                            {['/', '/collection', '/arrivals', '/about', '/offer'].map((path, index) => (
+                                <li key={index}>
+                                    <NavLink
+                                        to={path}
+                                        className={({ isActive }) =>
+                                            `hover:bg-gray-700 py-2 px-4 cursor-pointer ${isActive ? 'text-blue-700 font-bold' : ''}`
+                                        }
+                                    >
+                                        {path === '/' ? 'Home' : path.charAt(1).toUpperCase() + path.slice(2)}
+                                    </NavLink>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>
-                <div className='border-b-gray-300 border-[0.5px] mr-5 ml-5'></div>
+                <div className='border-b border-gray-300'></div>
             </div>
-            <div id="home" className="">
+            <div id="home">
                 <Herosection />
             </div>
 
@@ -184,7 +109,7 @@ export default function Navbar() {
             <div id="about" className="md:min-h-screen">
                 <About />
             </div>
-            <div id="offer" className="">
+            <div id="offer">
                 <Footer />
             </div>
         </>
