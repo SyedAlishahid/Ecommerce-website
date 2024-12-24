@@ -2,6 +2,7 @@ import React from 'react'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+
 function Listimgs({src , type}) {
 
     const [heart , setHeart] = useState(false);
@@ -17,6 +18,10 @@ function Listimgs({src , type}) {
       <img src={src} className='rounded-lg ' />
       <p className='ml-8 mt-4 text-slate-700 font-semibold text-xl'>{type}</p>
         <FavoriteIcon 
+        sx={{
+          marginLeft: "4rem",
+          marginTop: "1rem",
+        }}
         onClick={bgcolHandler}
          className={`${heartColor} `}
           />
